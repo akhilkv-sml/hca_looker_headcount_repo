@@ -59,4 +59,8 @@ view: headcount_sample_data {
     type: count
     drill_fields: [employee_name]
   }
+  measure: employee_count {
+    type: count_distinct
+    sql: ${employee_name} ;;
+  }
 }
