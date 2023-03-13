@@ -55,8 +55,9 @@ view: headcount_sample_data {
     sql: ${TABLE}.MONTH_END_DATE ;;
   }
 
-  measure: count {
+  measure: head_count {
     type: count
+    description: "Count of Number of employees"
     drill_fields: [employee_name]
   }
 }
