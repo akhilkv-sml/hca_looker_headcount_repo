@@ -64,4 +64,25 @@ view: headcount_sample_data {
     type: count_distinct
     sql: ${employee_name} ;;
   }
+
+
+  parameter: Category{
+    allowed_value: {
+      label: "Group"
+      value: "group"
+    }
+    allowed_value: {
+      label: "Employee Status"
+      value: "employee_status"
+    }
+  }
+  dimension: selected_filter  {
+    label_from_parameter: Category
+    type: string
+    sql:CASE
+      WHEN {% parameter Category %}='group' THEN ${group}
+    WHEN {% parameter Category %}='employee_status' THEN ${employee_status}
+      else NULL
+      END;;
+  }
 }
