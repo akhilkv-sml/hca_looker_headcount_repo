@@ -63,6 +63,8 @@ view: headcount_sample_data {
   measure: employee_count {
     type: count_distinct
     sql: ${employee_name} ;;
+    drill_fields: [employee_name,employee_status]
+    description: "Employee head count"
   }
 
 

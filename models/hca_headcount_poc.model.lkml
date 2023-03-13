@@ -27,3 +27,5 @@ persist_with: hca_headcount_poc_default_datagroup
 
 
 explore: headcount_sample_data {}
+
+explore: employee_time_period {}
