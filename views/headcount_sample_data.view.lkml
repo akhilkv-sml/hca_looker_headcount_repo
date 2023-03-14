@@ -86,5 +86,6 @@ view: headcount_sample_data {
     WHEN {% parameter Category %}='employee_status' THEN ${employee_status}
       else NULL
       END;;
+
   }
 }
