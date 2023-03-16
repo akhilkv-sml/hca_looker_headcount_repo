@@ -1,5 +1,5 @@
 # Define the database connection to be used for this model.
-connection: "akhilkv_connection"
+connection: "hca_looker_poc_connection"
 
 # include all the views
 include: "/views/**/*.view"
