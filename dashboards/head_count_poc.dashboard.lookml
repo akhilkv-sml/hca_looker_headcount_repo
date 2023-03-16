@@ -6,8 +6,8 @@
   description: ''
   preferred_slug: MnLYOdfWddhKiYpVaf74EF
   elements:
-  - title: HeadCount by Month
-    name: HeadCount by Month
+  - title: Headcount by Month
+    name: Headcount by Month
     model: hca_headcount_poc
     explore: headcount_sample_data
     type: looker_grid
@@ -69,8 +69,8 @@
     col: 0
     width: 24
     height: 4
-  - title: HeadCount by Status
-    name: HeadCount by Status
+  - title: by Group
+    name: by Group
     model: hca_headcount_poc
     explore: headcount_sample_data
     type: looker_column
@@ -125,12 +125,12 @@
     listen:
       Group: headcount_sample_data.group
       Employee Status: headcount_sample_data.employee_status
-    row: 14
+    row: 12
     col: 0
-    width: 24
-    height: 9
-  - title: Employee Composition
-    name: Employee Composition
+    width: 17
+    height: 8
+  - title: Group Composition
+    name: Group Composition
     model: hca_headcount_poc
     explore: headcount_sample_data
     type: looker_pie
@@ -144,21 +144,21 @@
     label_type: labPer
     inner_radius: 50
     color_application:
-      collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7
-      palette_id: ccba75a3-58c7-4b9c-a931-4ffc59e79cba
+      collection_id: 80e60a97-c02b-4a41-aa05-83522ee2144b
+      palette_id: 629b455f-662e-4854-a424-4f0c9d4bbdfb
       options:
         steps: 5
-        reverse: true
+        reverse: false
     series_colors: {}
     series_types: {}
     defaults_version: 1
     listen:
       Group: headcount_sample_data.group
       Employee Status: headcount_sample_data.employee_status
-    row: 5
-    col: 16
-    width: 8
-    height: 9
+    row: 12
+    col: 17
+    width: 7
+    height: 8
   - name: ''
     type: text
     title_text: ''
@@ -170,8 +170,8 @@
     col: 0
     width: 24
     height: 1
-  - title: "%Change in HeadCount by Month"
-    name: "%Change in HeadCount by Month"
+  - title: "%Change in Headcount by Month"
+    name: "%Change in Headcount by Month"
     model: hca_headcount_poc
     explore: headcount_sample_data
     type: looker_column
@@ -235,13 +235,97 @@
       Employee Status: headcount_sample_data.employee_status
     row: 5
     col: 0
-    width: 16
-    height: 9
+    width: 24
+    height: 7
+  - title: Status Composition
+    name: Status Composition
+    model: hca_headcount_poc
+    explore: headcount_sample_data
+    type: looker_pie
+    fields: [headcount_sample_data.head_count, headcount_sample_data.employee_status]
+    filters:
+      headcount_sample_data.month_end_month: 12 months
+    sorts: [headcount_sample_data.head_count desc]
+    limit: 500
+    column_limit: 50
+    value_labels: labels
+    label_type: labPer
+    inner_radius: 50
+    color_application:
+      collection_id: 80e60a97-c02b-4a41-aa05-83522ee2144b
+      palette_id: 629b455f-662e-4854-a424-4f0c9d4bbdfb
+      options:
+        steps: 5
+        reverse: false
+    series_colors: {}
+    series_types: {}
+    defaults_version: 1
+    listen: {}
+    row: 20
+    col: 17
+    width: 7
+    height: 8
+  - title: " by Employee Status"
+    name: " by Employee Status"
+    model: hca_headcount_poc
+    explore: headcount_sample_data
+    type: looker_column
+    fields: [headcount_sample_data.month_end_month, headcount_sample_data.group, headcount_sample_data.head_count]
+    pivots: [headcount_sample_data.group]
+    fill_fields: [headcount_sample_data.month_end_month]
+    filters:
+      headcount_sample_data.month_end_month: 12 months
+    sorts: [headcount_sample_data.month_end_month desc, headcount_sample_data.group]
+    limit: 500
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    color_application:
+      collection_id: b43731d5-dc87-4a8e-b807-635bef3948e7
+      palette_id: 1e4d66b9-f066-4c33-b0b7-cc10b4810688
+      options:
+        steps: 5
+    x_axis_zoom: true
+    y_axis_zoom: true
+    series_types: {}
+    series_colors: {}
+    defaults_version: 1
+    hidden_pivots: {}
+    listen: {}
+    row: 20
+    col: 0
+    width: 17
+    height: 8
   filters:
   - name: Group
     title: Group
     type: field_filter
-    default_value: Engineer
+    default_value: Engineer,HR,Immigration,Operations
     allow_multiple_values: true
     required: false
     ui_config:
