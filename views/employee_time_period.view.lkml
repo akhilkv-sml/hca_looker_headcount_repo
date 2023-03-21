@@ -23,7 +23,15 @@ view: employee_time_period {
       order by employee_name
        ;;
   }
-
+  dimension: name {
+    type: string
+    sql: ${TABLE}.employee_name ;;
+    link:{
+      label: "Google Dashboard"
+      url: "https://springmllook.cloud.looker.com/dashboards/18"
+      icon_url : "http://google.com/favicon.ico"
+    }
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
