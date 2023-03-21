@@ -11,7 +11,7 @@ view: headcount_sample_data {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Country" in Explore.
 
-  dimension: country {
+ dimension: country {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.COUNTRY ;;
