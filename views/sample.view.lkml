@@ -14,6 +14,7 @@ view: sample {
     label: "Dashboard"
     url: "https://springmllook.cloud.looker.com/dashboards/18"
     icon_url : "https://www.looker.com/favicon.ico"
+
     }
   }
 
