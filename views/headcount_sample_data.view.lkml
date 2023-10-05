@@ -20,6 +20,7 @@ view: headcount_sample_data {
   dimension: employee_name {
     type: string
     sql: ${TABLE}.EMPLOYEE_NAME ;;
+
   }
 
   dimension: employee_status {
