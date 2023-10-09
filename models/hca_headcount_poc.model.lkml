@@ -10,10 +10,11 @@ include: "/dashboards/**/*.dashboard"
 
 datagroup: hca_headcount_poc_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT CURDATE() ;;
   max_cache_age: "1 hour"
 }
 
-persist_with: hca_headcount_poc_default_datagroup
+# persist_with: hca_headcount_poc_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -32,3 +33,18 @@ explore: headcount_sample_data {}
 explore: employee_time_period {}
 
 explore: sample {}
+
+# Place in `hca_headcount_poc` model
+
+explore: +headcount_sample_data {
+  aggregate_table: rollup__group {
+    query: {
+      dimensions: [group]
+      measures: [head_count]
+    }
+
+    materialization: {
+      datagroup_trigger: hca_headcount_poc_default_datagroup
+    }
+  }
+}
