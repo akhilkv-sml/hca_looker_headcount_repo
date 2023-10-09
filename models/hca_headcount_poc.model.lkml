@@ -1,5 +1,5 @@
 # Define the database connection to be used for this model.
-connection: "akhilkv_connection"
+connection: "ecms_looker"
 
 # include all the views
 include: "/views/**/*.view"
@@ -37,14 +37,10 @@ explore: sample {}
 # Place in `hca_headcount_poc` model
 
 explore: +headcount_sample_data {
-  aggregate_table: rollup__group {
-    query: {
+    query:  headcount_by_group {
       dimensions: [group]
       measures: [head_count]
+      filters: [headcount_sample_data.employee_status: "Full Time"]
     }
-
-    materialization: {
-      datagroup_trigger: hca_headcount_poc_default_datagroup
-    }
-  }
+    description: "This is to test quick start analysis cards"
 }
