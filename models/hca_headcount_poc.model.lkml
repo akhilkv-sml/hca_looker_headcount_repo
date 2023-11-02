@@ -1,5 +1,5 @@
 # Define the database connection to be used for this model.
-connection: "akhilkv_connection"
+connection: "ecms_looker"
 
 # include all the views
 include: "/views/**/*.view"
@@ -10,10 +10,11 @@ include: "/dashboards/**/*.dashboard"
 
 datagroup: hca_headcount_poc_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT CURDATE() ;;
   max_cache_age: "1 hour"
 }
 
-persist_with: hca_headcount_poc_default_datagroup
+# persist_with: hca_headcount_poc_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -32,3 +33,14 @@ explore: headcount_sample_data {}
 explore: employee_time_period {}
 
 explore: sample {}
+
+# Place in `hca_headcount_poc` model
+
+explore: +headcount_sample_data {
+    query:  headcount_by_group {
+      dimensions: [group]
+      measures: [head_count]
+      filters: [headcount_sample_data.employee_status: "Full Time"]
+    }
+    description: "This is to test quick start analysis cards"
+}
